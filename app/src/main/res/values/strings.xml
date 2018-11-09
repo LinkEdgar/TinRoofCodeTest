@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">TinRoofCodeTest</string>
+    <string name="userid_label">UserId:</string>
+    <string name="id_label">Id:</string>
+    <string name="title_label">Title:</string>
+    <string name="completed_label">Completed:</string>
+
+</resources>

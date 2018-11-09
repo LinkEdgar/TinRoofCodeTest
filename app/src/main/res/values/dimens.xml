@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <dimen name="container_height">100dp</dimen>
+    <dimen name="font_size">18sp</dimen>
+    <dimen name="horizontal_margin">8dp</dimen>
+    <dimen name="vertical_margin">8dp</dimen>
+    <dimen name="horizontal_margin_large">16dp</dimen>
+    <dimen name="vertical_margin_large">16dp</dimen>
+
+</resources>
