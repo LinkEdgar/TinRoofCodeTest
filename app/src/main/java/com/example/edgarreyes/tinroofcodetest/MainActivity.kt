@@ -25,7 +25,7 @@ class MainActivity : AppCompatActivity(), UserContract.View, UserAdapter.UserIdC
         presenter.initiateLoadUser(savedInstanceState)
     }
 
-    override fun setUserData(user: User, position: Int) {
+    override fun setUserData(user: User?, position: Int) {
         this@MainActivity.runOnUiThread{
             try {
                 addDataToAdapter(user, position)
@@ -35,9 +35,11 @@ class MainActivity : AppCompatActivity(), UserContract.View, UserAdapter.UserIdC
         }
     }
 
-    private fun addDataToAdapter(user:User, position: Int){
-        mData.add(user)
-        mUserAdapter.notifyItemInserted(position)
+    private fun addDataToAdapter(user:User?, position: Int){
+        if (user != null) {
+            mData.add(user)
+            mUserAdapter.notifyItemInserted(position)
+        }
     }
 
     override fun initView() {

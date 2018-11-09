@@ -2,6 +2,7 @@ package com.example.edgarreyes.tinroofcodetest
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import kotlinx.android.synthetic.main.activity_user_detail.*
 
 class UserDetailActivity : AppCompatActivity() {
@@ -15,9 +16,7 @@ class UserDetailActivity : AppCompatActivity() {
     private fun handleIntentData(){
         val user = intent.getParcelableExtra<User>(intentKey)
         userid_tv.setText(user.userId)
-        id_tv.setText(user.id)
-        title_tv.setText(user.title)
-        completed_tv.setText(user.completed.toString())
+        //TODO display tasks for each userId
     }
 
     companion object {

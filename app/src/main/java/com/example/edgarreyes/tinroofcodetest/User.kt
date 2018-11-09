@@ -3,19 +3,35 @@ package com.example.edgarreyes.tinroofcodetest
 import android.os.Parcel
 import android.os.Parcelable
 
-data class User(var userId: String? = null, var id: String? = null, var title: String? = null, var completed: Boolean? = false): Parcelable{
+data class User(var userId: String?, var numberOfTaks: Int? = 0): Parcelable{
+
+    private var tasks: ArrayList<Task>
+
     constructor(parcel: Parcel) : this(
             parcel.readString(),
-            parcel.readString(),
-            parcel.readString(),
-            parcel.readValue(Boolean::class.java.classLoader) as? Boolean) {
+            parcel.readValue(Int::class.java.classLoader) as? Int) {
+
+    }
+
+    init {
+        tasks = ArrayList()
+    }
+
+    fun addTask(task: Task){
+        tasks.add(task)
+    }
+
+    fun amountOfTasks(): Int{
+        return tasks.size
+    }
+
+    fun getTask(position: Int):Task{
+        return tasks[position]
     }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(userId)
-        parcel.writeString(id)
-        parcel.writeString(title)
-        parcel.writeValue(completed)
+        parcel.writeValue(numberOfTaks)
     }
 
     override fun describeContents(): Int {

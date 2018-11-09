@@ -6,7 +6,7 @@ import org.json.JSONArray
 interface UserContract{
     interface View{
         fun initView() //initializes views and adapters
-        fun setUserData(user:User, position: Int)
+        fun setUserData(user:User?, position: Int)
     }
 
     interface Presenter{

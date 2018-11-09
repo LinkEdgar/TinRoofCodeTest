@@ -4,10 +4,12 @@ import android.os.Bundle
 import android.util.Log
 import org.json.JSONArray
 import org.json.JSONException
+import org.json.JSONObject
 
 class UserPresenter(val view: UserContract.View): UserContract.Presenter{
 
     private  lateinit var userModel:UserModel
+    private lateinit var set: HashMap<String,User>
 
     init {
         initPresenter()
@@ -26,19 +28,35 @@ class UserPresenter(val view: UserContract.View): UserContract.Presenter{
              try {
                  val json = jsonArray.getJSONObject(x)
                  val userId = json.getString(userIdJson)
-                 val id = json.getString(idJson)
-                 val title = json.getString(titleJson)
-                 val completed = json.getBoolean(completedJson)
-                 val user = User(userId, id, title, completed )
-                 view.setUserData(user, x)
+                 var user: User? = null
+                 if(!set.contains(userId)){
+                     user = User(userId)
+                     set.put(userId,user)
+                     user.addTask(createTask(json))
+                     view.setUserData(user, x)
+                 }else{
+                     user =set.get(userId)
+                     user?.addTask(createTask(json))
+
+                 }
+
              }catch(e: JSONException){
                  e.printStackTrace()
              }
          }
     }
 
+    private fun createTask(jsonObject: JSONObject): Task{
+        val id = jsonObject.getString(idJson)
+        val title = jsonObject.getString(titleJson)
+        val completed = jsonObject.getBoolean(completedJson)
+        val task = Task(id,title,completed)
+        return task
+    }
 
-    fun initPresenter(){
+
+    private fun initPresenter(){
+        set = HashMap()
         userModel = UserModel(this)
     }
 
